@@ -23,7 +23,12 @@ body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     line-height: 1.5;
     overflow-x: hidden;
+    width: 100%;
     -webkit-font-smoothing: antialiased;
+}
+
+html {
+    overflow-x: hidden;
 }
 
 /* ==========================================================================
@@ -64,8 +69,13 @@ body {
 }
 
 @keyframes drift {
-    0% { transform: translate(0, 0) scale(1); }
-    100% { transform: translate(50px, 50px) scale(1.1); }
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    100% {
+        transform: translate(50px, 50px) scale(1.1);
+    }
 }
 
 /* ==========================================================================
@@ -157,6 +167,7 @@ body {
     margin-bottom: 1.5rem;
     background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.7) 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -180,13 +191,13 @@ body {
     font-weight: 700;
     font-size: 0.9rem;
     letter-spacing: 0.5px;
-    box-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .huly-btn.primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 0 60px rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
 }
 
 /* ==========================================================================
@@ -195,7 +206,8 @@ body {
 .hero-mockup-wrapper {
     width: 100%;
     max-width: 1100px;
-    perspective: 1200px; /* Crucial for Huly 3D effects */
+    perspective: 1200px;
+    /* Crucial for Huly 3D effects */
     margin-bottom: 10rem;
 }
 
@@ -206,9 +218,11 @@ body {
     border-radius: 16px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    transform: rotateX(8deg); /* Initial Huly Tilt */
+    transform: rotateX(8deg);
+    /* Initial Huly Tilt */
     transform-origin: top center;
-    transition: transform 0.1s ease-out; /* Smooth parallax */
+    transition: transform 0.1s ease-out;
+    /* Smooth parallax */
     overflow: hidden;
 }
 
@@ -232,9 +246,18 @@ body {
     height: 12px;
     border-radius: 50%;
 }
-.dot.close { background: #FF5F56; }
-.dot.min { background: #FFBD2E; }
-.dot.max { background: #27C93F; }
+
+.dot.close {
+    background: #FF5F56;
+}
+
+.dot.min {
+    background: #FFBD2E;
+}
+
+.dot.max {
+    background: #27C93F;
+}
 
 .mockup-path {
     position: absolute;
@@ -254,15 +277,37 @@ body {
     height: 400px;
 }
 
-.terminal-line { color: #fff; margin-bottom: 8px; }
-.user { color: #27C93F; font-weight: bold; }
-.dir { color: #3B82F6; font-weight: bold; }
-.output { color: #A1A1AA; }
-.highlight { color: #FFBD2E; }
-.blink { animation: blinker 1s linear infinite; }
+.terminal-line {
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+.user {
+    color: #27C93F;
+    font-weight: bold;
+}
+
+.dir {
+    color: #3B82F6;
+    font-weight: bold;
+}
+
+.output {
+    color: #A1A1AA;
+}
+
+.highlight {
+    color: #FFBD2E;
+}
+
+.blink {
+    animation: blinker 1s linear infinite;
+}
 
 @keyframes blinker {
-    50% { opacity: 0; }
+    50% {
+        opacity: 0;
+    }
 }
 
 /* ==========================================================================
@@ -305,21 +350,29 @@ body {
     border-radius: 20px;
     background: var(--huly-surface);
     /* The distinctive Huly ring */
-    box-shadow: 0 0 0 1px var(--huly-ring), 0 20px 40px rgba(0,0,0,0.4);
+    box-shadow: 0 0 0 1px var(--huly-ring), 0 20px 40px rgba(0, 0, 0, 0.4);
     overflow: hidden;
     height: 450px;
     display: flex;
     flex-direction: column;
 }
 
-.bento-card.span-2 { grid-column: span 2; }
-.bento-card.span-1 { grid-column: span 1; }
+.bento-card.span-2 {
+    grid-column: span 2;
+}
+
+.bento-card.span-1 {
+    grid-column: span 1;
+}
 
 .card-glass {
     padding: 2.5rem;
     height: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    z-index: 2;
 }
 
 .card-visual {
@@ -334,26 +387,40 @@ body {
     margin-top: auto;
 }
 
+/* Phase 11: Shimmering H3 Text */
 .card-text h3 {
     font-size: 1.25rem;
-    font-weight: 400;
-    color: var(--huly-text-muted);
-    line-height: 1.4;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    flex-grow: 1;
+    margin-bottom: 10px;
+    background: linear-gradient(110deg, var(--huly-text-primary) 0%, var(--huly-text-muted) 40%, var(--huly-text-primary) 80%);
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: text-shimmer 6s linear infinite;
+}
+
+@keyframes text-shimmer {
+    to {
+        background-position: 200% center;
+    }
 }
 
 .card-text h3 strong {
-    color: var(--huly-text-main);
-    font-weight: 600;
+    font-weight: 700;
 }
 
 /* Floating Mini Mockups inside Bento */
 .floating-mockup.mini {
     width: 80%;
-    background: rgba(0,0,0,0.6);
-    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
     transform: translateY(-20px) rotateX(10deg);
 }
 
@@ -374,6 +441,18 @@ body {
     color: var(--huly-text-muted);
     line-height: 1.6;
     margin-top: 12px;
+    /* Phase 11: Breathing readouts */
+    animation: breathe-text 5s ease-in-out infinite alternate;
+}
+
+@keyframes breathe-text {
+    0% {
+        opacity: 0.7;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 /* 1. 3D NVMe Storage Chip */
@@ -392,20 +471,22 @@ body {
     background: #111216;
     border: 2px solid #333;
     border-radius: 8px;
-    box-shadow: 
-        inset 0 0 20px rgba(0,0,0,0.8),
-        -10px 10px 20px rgba(0,0,0,0.5),
+    box-shadow:
+        inset 0 0 20px rgba(0, 0, 0, 0.8),
+        -10px 10px 20px rgba(0, 0, 0, 0.5),
         -1px 1px 0 #222, -2px 2px 0 #222, -3px 3px 0 #222, -4px 4px 0 #222;
     transform: translateZ(20px);
 }
 
 .chip-core {
     position: absolute;
-    top: 50%; left: 50%;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
-    width: 60px; height: 60px;
+    width: 60px;
+    height: 60px;
     background: #090a0c;
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 0 15px rgba(255, 60, 60, 0.4);
 }
 
@@ -413,7 +494,7 @@ body {
     content: '';
     position: absolute;
     inset: 2px;
-    background: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(255,60,60,0.2) 4px, rgba(255,60,60,0.2) 8px);
+    background: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(255, 60, 60, 0.2) 4px, rgba(255, 60, 60, 0.2) 8px);
     animation: crypto-burn 0.5s infinite;
 }
 
@@ -423,13 +504,70 @@ body {
     gap: 4px;
 }
 
-.chip-pins.left { top: 10px; bottom: 10px; left: -10px; flex-direction: column; }
-.chip-pins.right { top: 10px; bottom: 10px; right: -10px; flex-direction: column; }
-.chip-pins::before, .chip-pins::after { content: ''; flex-grow: 1; background: repeating-linear-gradient(to bottom, #888 0px, #888 4px, transparent 4px, transparent 8px); width: 8px; }
+.chip-pins.left {
+    top: 10px;
+    bottom: 10px;
+    left: -10px;
+    flex-direction: column;
+}
+
+.chip-pins.right {
+    top: 10px;
+    bottom: 10px;
+    right: -10px;
+    flex-direction: column;
+}
+
+.chip-pins::before,
+.chip-pins::after {
+    content: '';
+    flex-grow: 1;
+    background: repeating-linear-gradient(to bottom, #888 0px, #888 4px, transparent 4px, transparent 8px);
+    width: 8px;
+}
+
+/* Dynamic Animation 1: SSD Scrubber Beam */
+.shredder-beam {
+    position: absolute;
+    top: 0;
+    left: -20%;
+    width: 140%;
+    height: 4px;
+    background: #FF3C3C;
+    box-shadow: 0 0 15px #FF3C3C, 0 0 30px #FF3C3C;
+    transform: translateZ(30px);
+    animation: scan-chip 3s ease-in-out infinite;
+    z-index: 10;
+}
+
+@keyframes scan-chip {
+    0% {
+        top: 0%;
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        top: 100%;
+        opacity: 0;
+    }
+}
 
 @keyframes crypto-burn {
-    0% { filter: hue-rotate(0deg) brightness(1); }
-    100% { filter: hue-rotate(90deg) brightness(2); }
+    0% {
+        filter: hue-rotate(0deg) brightness(1);
+    }
+
+    100% {
+        filter: hue-rotate(90deg) brightness(2);
+    }
 }
 
 /* 2. 3D Server Stack (Compute) */
@@ -446,57 +584,155 @@ body {
     width: 100%;
     height: 100%;
     background: rgba(20, 22, 28, 0.8);
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(5px);
-    box-shadow: -5px 5px 15px rgba(0,0,0,0.5);
+    box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.5);
     transition: transform 0.3s;
 }
 
+/* Dynamic Animation 2: Server Processing Simulation */
 .server-blade::after {
-    content: ''; position: absolute; top: 10px; right: 10px; width: 6px; height: 6px; border-radius: 50%;
-    background: #27C93F; box-shadow: 0 0 10px #27C93F; animation: blinker 0.2s infinite alternate;
+    content: '';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #27C93F;
+    transition: all 0.2s;
 }
 
-.blade-1 { transform: translateZ(0px); }
-.blade-2 { transform: translateZ(40px); animation-delay: 0.1s; }
-.blade-3 { transform: translateZ(80px); animation-delay: 0.2s; }
+.blade-1 {
+    transform: translateZ(0px);
+    animation: server-working 4s infinite 0s;
+}
 
-.mockup-3d-stack:hover .blade-1 { transform: translateZ(-20px); }
-.mockup-3d-stack:hover .blade-2 { transform: translateZ(40px); }
-.mockup-3d-stack:hover .blade-3 { transform: translateZ(100px); }
+.blade-2 {
+    transform: translateZ(40px);
+    animation: server-working 4s infinite 1s;
+}
+
+.blade-3 {
+    transform: translateZ(80px);
+    animation: server-working 4s infinite 2.5s;
+}
+
+/* Active processing light state integrated into blade animation */
+@keyframes server-working {
+
+    0%,
+    15% {
+        transform: translateY(0) translateZ(calc(var(--base-z) - 10px));
+        box-shadow: -10px 10px 30px rgba(39, 201, 63, 0.2);
+    }
+
+    20%,
+    80% {
+        transform: translateY(0) translateZ(var(--base-z));
+        box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    85%,
+    100% {
+        transform: translateY(0) translateZ(calc(var(--base-z) - 10px));
+        box-shadow: -10px 10px 30px rgba(39, 201, 63, 0.2);
+    }
+}
+
+.blade-1 {
+    --base-z: 0px;
+}
+
+.blade-2 {
+    --base-z: 40px;
+}
+
+.blade-3 {
+    --base-z: 80px;
+}
 
 /* 3. MFT Slack Mapping Glass Table */
 .mockup-3d-table {
     width: 180px;
     background: rgba(15, 15, 20, 0.6);
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 8px;
     padding: 1rem;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
     transform: perspective(800px) rotateY(-15deg);
     animation: floatY 4s ease-in-out infinite alternate;
 }
 
 .table-row {
-    display: flex; justify-content: space-between; align-items: center;
-    font-family: 'SF Mono', Consolas, monospace; font-size: 0.7rem; color: #888;
-    margin-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'SF Mono', Consolas, monospace;
+    font-size: 0.7rem;
+    color: #888;
+    margin-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 4px;
 }
 
-.mem-block { padding: 2px 6px; border-radius: 4px; font-weight: bold; }
-.mem-block.cleared { background: rgba(39, 201, 63, 0.2); color: #27C93F; }
-.mem-block.wiping { background: rgba(255, 60, 60, 0.2); color: #FF3C3C; animation: blinker 0.1s infinite; }
-.mem-block.unallocated { background: rgba(255, 255, 255, 0.05); color: #FFF; }
+.mem-block {
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+/* Dynamic Animation 3: Memory Allocation Overwriting */
+.anim-cell-1::after {
+    content: 'RAW';
+    animation: memory-wipe-pattern 6s infinite 0s;
+}
+
+.anim-cell-2::after {
+    content: 'RAW';
+    animation: memory-wipe-pattern 6s infinite 2s;
+}
+
+.anim-cell-3::after {
+    content: 'RAW';
+    animation: memory-wipe-pattern 6s infinite 4s;
+}
+
+@keyframes memory-wipe-pattern {
+
+    0%,
+    30% {
+        content: 'RAW';
+        background: rgba(255, 255, 255, 0.05);
+        color: #FFF;
+    }
+
+    35%,
+    65% {
+        content: '0xFF';
+        background: rgba(255, 60, 60, 0.2);
+        color: #FF3C3C;
+        box-shadow: inset 0 0 10px rgba(255, 60, 60, 0.5);
+    }
+
+    70%,
+    100% {
+        content: '0x00';
+        background: rgba(39, 201, 63, 0.2);
+        color: #27C93F;
+        box-shadow: none;
+    }
+}
 
 /* 4. Direct Sector Access Terminal */
 .mockup-3d-terminal {
     width: 250px;
     background: #000;
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 8px;
     overflow: hidden;
     transform: perspective(800px) rotateX(20deg) rotateY(-10deg);
-    box-shadow: 0 30px 60px rgba(0,0,0,0.6), -20px 20px 0px rgba(255, 60, 60, 0.1);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), -20px 20px 0px rgba(255, 60, 60, 0.1);
     transition: transform 0.5s ease-out;
 }
 
@@ -505,24 +741,86 @@ body {
 }
 
 .term-header {
-    background: #111; padding: 6px 12px; font-family: monospace; font-size: 0.65rem; color: #666; display: flex; align-items: center; gap: 8px;
+    background: #111;
+    padding: 6px 12px;
+    font-family: monospace;
+    font-size: 0.65rem;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    z-index: 5;
 }
-.term-header .dots { width: 8px; height: 8px; border-radius: 50%; background: #FF5F56; box-shadow: 12px 0 0 #FFBD2E, 24px 0 0 #27C93F; margin-right: 24px; }
+
+.term-header .dots {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #FF5F56;
+    box-shadow: 12px 0 0 #FFBD2E, 24px 0 0 #27C93F;
+    margin-right: 24px;
+}
+
+/* Dynamic Animation 4: Infinite Marquee Terminal Scroll */
+.term-window {
+    height: 100px;
+    overflow: hidden;
+    position: relative;
+    background: repeating-linear-gradient(0deg, rgba(0, 255, 0, 0.02) 0px, rgba(0, 255, 0, 0.02) 1px, transparent 1px, transparent 2px);
+}
 
 .term-body {
-    padding: 12px; font-family: 'SF Mono', monospace; font-size: 0.7rem; color: #555; background: repeating-linear-gradient(0deg, rgba(0,255,0,0.02) 0px, rgba(0,255,0,0.02) 1px, transparent 1px, transparent 2px);
+    padding: 12px;
+    font-family: 'SF Mono', monospace;
+    font-size: 0.7rem;
+    color: #555;
 }
 
-.hex-line { margin-bottom: 4px; }
-.wipe-color { color: #FF3C3C; text-shadow: 0 0 5px rgba(255, 60, 60, 0.5); }
+.scroll-infinite {
+    animation: terminal-scroll 5s linear infinite;
+}
+
+@keyframes terminal-scroll {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-50%);
+    }
+
+    /* Scrolls precisely half its duplicated height */
+}
+
+.hex-line {
+    margin-bottom: 4px;
+    line-height: 1.4;
+}
+
+.wipe-color {
+    color: #FF3C3C;
+    text-shadow: 0 0 5px rgba(255, 60, 60, 0.5);
+}
 
 @keyframes float-3d {
-    0% { transform: perspective(800px) rotateX(60deg) rotateZ(45deg) translateZ(0); }
-    100% { transform: perspective(800px) rotateX(60deg) rotateZ(45deg) translateZ(20px); }
+    0% {
+        transform: perspective(800px) rotateX(60deg) rotateZ(45deg) translateZ(0);
+    }
+
+    100% {
+        transform: perspective(800px) rotateX(60deg) rotateZ(45deg) translateZ(20px);
+    }
 }
+
 @keyframes floatY {
-    0% { transform: perspective(800px) rotateY(-15deg) translateY(0); }
-    100% { transform: perspective(800px) rotateY(-15deg) translateY(-10px); }
+    0% {
+        transform: perspective(800px) rotateY(-15deg) translateY(0);
+    }
+
+    100% {
+        transform: perspective(800px) rotateY(-15deg) translateY(-10px);
+    }
 }
 
 /* ==========================================================================
@@ -532,6 +830,9 @@ body {
     max-width: 1400px;
     margin: 0 auto 10rem auto;
     padding: 0 2rem;
+}
+
+.showcase-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
@@ -550,12 +851,44 @@ body {
     line-height: 1.6;
 }
 
+/* Phase 11: GitHub Commit Window Live Border */
 .repo-view {
     padding: 1.5rem;
     height: 300px;
     display: flex;
     flex-direction: column;
     gap: 12px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.repo-view::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(transparent, rgba(255, 255, 255, 0.3), transparent 15%);
+    animation: rotate-border 6s linear infinite;
+    z-index: 0;
+}
+
+.repo-view::after {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    /* 1px inner cutout revealing the animated background as a border */
+    background: rgba(15, 15, 20, 0.95);
+    border-radius: 11px;
+    z-index: 1;
+}
+
+@keyframes rotate-border {
+    100% {
+        transform: rotate(1turn);
+    }
 }
 
 .repo-row {
@@ -563,30 +896,89 @@ body {
     align-items: center;
     gap: 12px;
     padding: 12px;
-    background: rgba(255,255,255,0.02);
+    background: rgba(255, 255, 255, 0.02);
     border-radius: 6px;
     font-size: 0.85rem;
     color: #fff;
-    border: 1px solid rgba(255,255,255,0.05);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+    z-index: 5;
+    /* Sit above the repo-view pseudo borders */
 }
 
-.repo-row svg { color: var(--huly-text-muted); }
-.repo-row .msg { color: var(--huly-text-muted); margin-left: auto; }
+/* Phase 11: Commit Row Scanning Highlight */
+.repo-row::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+    z-index: 0;
+}
+
+.repo-row:nth-child(1)::before {
+    animation: scan-row 8s infinite 0s;
+}
+
+.repo-row:nth-child(2)::before {
+    animation: scan-row 8s infinite 2s;
+}
+
+.repo-row:nth-child(3)::before {
+    animation: scan-row 8s infinite 4s;
+}
+
+.repo-row:nth-child(4)::before {
+    animation: scan-row 8s infinite 6s;
+    border-bottom: none;
+}
+
+@keyframes scan-row {
+    0% {
+        left: -100%;
+    }
+
+    15% {
+        left: 100%;
+    }
+
+    100% {
+        left: 100%;
+    }
+}
+
+.repo-row>* {
+    position: relative;
+    z-index: 1;
+}
+
+.repo-row svg {
+    color: var(--huly-text-muted);
+}
+
+.repo-row .msg {
+    color: var(--huly-text-muted);
+    margin-left: auto;
+}
 
 /* ==========================================================================
    Huly Footer
    ========================================================================== */
 .huly-footer {
-    border-top: 1px solid rgba(255,255,255,0.05);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
     padding: 5rem 2rem 2rem 2rem;
     background: #000;
 }
 
 .footer-container {
-    max-width: 1400px;
+    max-width: 1100px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
     margin-bottom: 4rem;
 }
 
@@ -622,13 +1014,15 @@ body {
     transition: color 0.3s;
 }
 
-.link-col a:hover { color: #fff; }
+.link-col a:hover {
+    color: #fff;
+}
 
 .footer-bottom {
     max-width: 1400px;
     margin: 0 auto;
     padding-top: 2rem;
-    border-top: 1px solid rgba(255,255,255,0.05);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
     color: var(--huly-text-muted);
     font-size: 0.85rem;
     text-align: center;
@@ -637,25 +1031,40 @@ body {
 /* ==========================================================================
    Reveal Animations (Triggered by JS)
    ========================================================================== */
-.reveal-text, .reveal-up {
+.reveal-text,
+.reveal-up {
     opacity: 0;
     transform: translateY(40px) scale(0.95);
     will-change: transform, opacity;
 }
 
-.reveal-text.active, .reveal-up.active {
+.reveal-text.active,
+.reveal-up.active {
     opacity: 1;
     transform: translateY(0) scale(1);
     transition: all 0.9s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 /* Stagger for grid items */
-.bento-card:nth-child(2) { transition-delay: 0.1s; }
-.bento-card:nth-child(3) { transition-delay: 0.2s; }
+.bento-card:nth-child(2) {
+    transition-delay: 0.1s;
+}
+
+.bento-card:nth-child(3) {
+    transition-delay: 0.2s;
+}
 
 /* Responsive adjustments */
 @media (max-width: 1024px) {
-    .bento-grid { grid-template-columns: 1fr; }
-    .bento-card.span-2 { grid-column: span 1; }
-    .huly-showcase { grid-template-columns: 1fr; }
+    .bento-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .bento-card.span-2 {
+        grid-column: span 1;
+    }
+
+    .showcase-container {
+        grid-template-columns: 1fr;
+    }
 }
